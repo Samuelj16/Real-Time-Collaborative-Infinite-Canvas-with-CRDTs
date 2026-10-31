@@ -1,5 +1,12 @@
 # 🎨 Real-Time Collaborative Infinite Canvas with CRDTs & Spatial Indexing
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-samj--crdt--canvas.netlify.app-6366f1?style=for-the-badge&logo=netlify)](https://samj-crdt-canvas.netlify.app)
+[![Tech Stack](https://img.shields.io/badge/CRDT-Yjs-purple?style=for-the-badge)](https://yjs.dev)
+[![Spatial Index](https://img.shields.io/badge/Spatial%20Index-R--Tree-emerald?style=for-the-badge)](https://github.com/mourner/rbush)
+
+> 🚀 **Live Demo**: [https://samj-crdt-canvas.netlify.app](https://samj-crdt-canvas.netlify.app)  
+> *Open across two windows or tabs to test real-time peer cursor interpolation, multi-user CRDT synchronization, and scoped undo/redo live.*
+
 A production-grade, multiplayer infinite canvas (similar to **Figma** and **Miro**) engineered with **Conflict-free Replicated Data Types (CRDTs)**, **R-Tree spatial viewport culling**, **binary WebSockets**, and **client-side linear interpolation (lerp)**.
 
 ---
