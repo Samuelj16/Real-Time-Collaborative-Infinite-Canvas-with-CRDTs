@@ -42,8 +42,8 @@ export const App: React.FC = () => {
 
   // Application state
   const [currentTool, setCurrentTool] = useState<ToolType>('select');
-  const [strokeColor, setStrokeColor] = useState<string>('#38bdf8');
-  const [fillColor, setFillColor] = useState<string>('#0284c7');
+  const [strokeColor, setStrokeColor] = useState<string>('#6366f1');
+  const [fillColor, setFillColor] = useState<string>('transparent');
   const [strokeWidth, setStrokeWidth] = useState<number>(2);
 
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -617,6 +617,12 @@ export const App: React.FC = () => {
         }`}
       />
 
+      <header className="board-header">
+        <div className="brand-mark" aria-hidden="true">∞</div>
+        <div className="board-title"><div>Untitled canvas <span className="board-tag">PERSONAL BOARD</span></div><p>A little space for your next big idea.</p></div>
+      </header>
+      {stats.totalShapes === 0 && <div className="empty-canvas"><div className="empty-symbol">✳</div><span>ROOM TO THINK</span><h1>Good ideas start here.</h1><p>Sketch a thought, drop a note, or connect the dots.<br />Pick a tool on the left and make it yours.</p><button onClick={() => setCurrentTool('sticky')}>Start with a sticky note <span>↗</span></button></div>}
+      <div className="canvas-footer"><span className="footer-dot" />{stats.totalShapes} objects<span className="footer-divider" />Hold <kbd>space</kbd> to pan · Scroll to explore</div>
       {/* Top Left Presence & Connection Status */}
       <PresenceBar
         currentUser={currentUser}

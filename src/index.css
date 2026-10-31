@@ -62,3 +62,54 @@ html, body, #root {
   background: #475569;
 }
 
+
+/* Board workspace */
+html, body, #root { background: #f8f9fc; color: #30354b; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+button:focus-visible { outline: 3px solid #a5b4fc; outline-offset: 3px; }
+.board-header { position: absolute; inset: 0 0 auto; height: 86px; background: rgba(255,255,255,.96); border-bottom: 1px solid #e7e9f0; display: flex; align-items: center; gap: 14px; padding: 0 28px; z-index: 20; }
+.brand-mark { width: 42px; height: 42px; background: #6366f1; color: white; border-radius: 13px; display: grid; place-items: center; font-size: 35px; line-height: 1; box-shadow: 0 4px 10px #6366f125; }
+.board-title { font-size: 15px; font-weight: 650; letter-spacing: -.3px; }
+.board-title p { font-size: 12px; color: #9296a8; font-weight: 400; margin-top: 5px; letter-spacing: 0; }
+.board-tag { font-size: 9px; font-weight: 600; color: #9397a9; border: 1px solid #e5e7ee; border-radius: 5px; padding: 4px 6px; margin-left: 12px; letter-spacing: .8px; vertical-align: middle; }
+.presence-bar { top: 23px; right: 24px; left: auto; border: 0; box-shadow: none; padding: 0; max-width: 52%; }
+.presence-bar > div:last-child { min-width: 0; overflow: hidden; }
+.tool-dock { top: 110px; left: 22px; border-radius: 16px; padding: 7px; gap: 4px; box-shadow: 0 4px 20px #242b4810; }
+.tool-dock button { border-radius: 9px; }
+.style-panel { top: 110px; left: 100px; width: 202px; padding: 18px; gap: 20px; border-radius: 14px; box-shadow: 0 4px 20px #242b4808; }
+.panel-heading { font-size: 13px; font-weight: 650; color: #34394e; padding-bottom: 13px; border-bottom: 1px solid #eceef4; }
+.panel-heading span { display: block; margin-top: 4px; font-weight: 400; font-size: 11px; color: #969bad; }
+.performance-panel { top: auto; bottom: 24px; left: 24px; right: auto; }
+.performance-panel > div { width: 256px; border-radius: 12px; padding: 12px 14px; }
+.performance-panel > div > div:first-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+.performance-panel > div > div:nth-child(2) { margin-top: 14px; }
+.empty-canvas { position: absolute; top: 48%; left: 56%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; width: 430px; }
+.empty-symbol { margin: 0 auto 22px; font-size: 50px; color: #8b8def; line-height: 1; }
+.empty-canvas > span { font-size: 10px; letter-spacing: 2.5px; font-weight: 600; color: #9295ac; }
+.empty-canvas h1 { font-size: 32px; letter-spacing: -1.2px; font-weight: 600; color: #34394f; margin: 11px 0; }
+.empty-canvas p { font-size: 13px; line-height: 1.9; color: #9297aa; }
+.empty-canvas button { pointer-events: auto; margin-top: 24px; background: white; border: 1px solid #e1e3f1; border-radius: 9px; padding: 11px 16px; color: #6366d5; font-size: 12px; font-weight: 600; box-shadow: 0 3px 8px #30335405; }
+.empty-canvas button:hover { background: #eef2ff; }
+.empty-canvas button span { margin-left: 16px; }
+.canvas-footer { position: absolute; bottom: 86px; left: 26px; display: flex; align-items: center; gap: 7px; font-size: 11px; color: #9297aa; pointer-events: none; }
+.footer-dot { width: 5px; height: 5px; background: #9da3b7; border-radius: 50%; }
+.footer-divider { width: 1px; height: 12px; background: #dfe2ec; margin: 0 4px; }
+kbd { font-family: inherit; }
+@media (max-width: 1000px) { .presence-bar > div:last-child > div:last-child { display: none; } .board-tag { display: none; } .empty-canvas { left: 62%; width: 340px; } .empty-canvas h1 { font-size: 27px; } }
+@media (max-width: 700px) {
+ .board-header { height: 76px; padding: 0 16px; gap: 10px; }
+ .board-title p { display: none; } .board-title { font-size: 13px; }
+ .brand-mark { width: 34px; height: 34px; }
+ .presence-bar { top: 25px; right: 12px; max-width: 38%; }
+ .presence-bar > div:last-child, .presence-bar > div:nth-child(2) { display: none; }
+ .tool-dock { top: 92px; left: 12px; max-height: calc(100dvh - 190px); overflow-y: auto; }
+ .tool-dock button { padding: 8px; }
+ .style-panel { top: 92px; left: auto; right: 12px; width: 172px; padding: 12px; gap: 12px; }
+ .panel-heading span { display: none; }
+ .empty-canvas { top: 65%; left: 57%; width: 270px; }
+ .empty-canvas h1 { font-size: 23px; } .empty-canvas p { font-size: 11px; }
+ .empty-symbol { display: none; } .empty-canvas button { margin-top: 14px; }
+ .performance-panel { bottom: 73px; left: 12px; } .canvas-footer { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

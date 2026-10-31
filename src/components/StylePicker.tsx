@@ -10,7 +10,7 @@ interface StylePickerProps {
 }
 
 const STROKE_COLORS = [
-  '#f8fafc', // White/slate
+  '#334155', // Slate
   '#38bdf8', // Sky
   '#6366f1', // Indigo
   '#ec4899', // Pink
@@ -22,10 +22,10 @@ const STROKE_COLORS = [
 const FILL_COLORS = [
   'transparent',
   '#1e293b', // Slate fill
-  '#0284c7', // Sky fill
-  '#4f46e5', // Indigo fill
-  '#db2777', // Pink fill
-  '#059669', // Emerald fill
+  '#bae6fd', // Sky fill
+  '#c7d2fe', // Indigo fill
+  '#fbcfe8', // Pink fill
+  '#a7f3d0', // Emerald fill
   '#fef08a', // Sticky Yellow
 ];
 
@@ -38,19 +38,22 @@ export const StylePicker: React.FC<StylePickerProps> = ({
   onChangeStrokeWidth,
 }) => {
   return (
-    <div className="absolute top-20 left-4 z-30 flex flex-col gap-3 p-3 bg-slate-900/90 backdrop-blur-md border border-slate-800 shadow-2xl rounded-2xl w-48 text-xs text-slate-300">
+    <div className="style-panel absolute z-30 flex flex-col gap-3 p-3 bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm rounded-2xl w-48 text-xs text-slate-700">
+      <div className="panel-heading">Shape style <span>Customize your next idea</span></div>
       {/* Stroke Color */}
       <div>
-        <div className="text-[11px] font-medium text-slate-400 mb-1.5 uppercase tracking-wider">
+        <div className="text-[11px] font-medium text-slate-500 mb-1.5 uppercase tracking-wider">
           Stroke
         </div>
         <div className="flex flex-wrap gap-1.5">
           {STROKE_COLORS.map(c => (
             <button
               key={c}
+              aria-label={`Stroke ${c}`}
+              aria-pressed={strokeColor === c}
               onClick={() => onChangeStrokeColor(c)}
               className={`w-6 h-6 rounded-full border transition-transform ${
-                strokeColor === c ? 'scale-125 border-white shadow-md' : 'border-slate-700 hover:scale-110'
+                strokeColor === c ? 'scale-125 border-indigo-600 shadow-md' : 'border-slate-700 hover:scale-110'
               }`}
               style={{ backgroundColor: c }}
             />
@@ -60,18 +63,20 @@ export const StylePicker: React.FC<StylePickerProps> = ({
 
       {/* Fill Color */}
       <div>
-        <div className="text-[11px] font-medium text-slate-400 mb-1.5 uppercase tracking-wider">
+        <div className="text-[11px] font-medium text-slate-500 mb-1.5 uppercase tracking-wider">
           Fill
         </div>
         <div className="flex flex-wrap gap-1.5">
           {FILL_COLORS.map(c => (
             <button
               key={c}
+              aria-label={`Fill ${c}`}
+              aria-pressed={fillColor === c}
               onClick={() => onChangeFillColor(c)}
               className={`w-6 h-6 rounded-full border transition-transform flex items-center justify-center ${
-                fillColor === c ? 'scale-125 border-white shadow-md' : 'border-slate-700 hover:scale-110'
+                fillColor === c ? 'scale-125 border-indigo-600 shadow-md' : 'border-slate-700 hover:scale-110'
               }`}
-              style={{ backgroundColor: c === 'transparent' ? '#090d16' : c }}
+              style={{ backgroundColor: c === 'transparent' ? '#ffffff' : c }}
             >
               {c === 'transparent' && <span className="text-[10px] text-slate-500">∅</span>}
             </button>
@@ -81,7 +86,7 @@ export const StylePicker: React.FC<StylePickerProps> = ({
 
       {/* Stroke Width */}
       <div>
-        <div className="text-[11px] font-medium text-slate-400 mb-1.5 uppercase tracking-wider">
+        <div className="text-[11px] font-medium text-slate-500 mb-1.5 uppercase tracking-wider">
           Width
         </div>
         <div className="flex gap-2">
@@ -91,8 +96,8 @@ export const StylePicker: React.FC<StylePickerProps> = ({
               onClick={() => onChangeStrokeWidth(w)}
               className={`flex-1 py-1 px-2 rounded-lg border text-center transition-all ${
                 strokeWidth === w
-                  ? 'bg-indigo-600/30 border-indigo-500 text-indigo-300 font-semibold'
-                  : 'border-slate-800 hover:bg-slate-800/60 text-slate-400'
+                  ? 'bg-indigo-600/30 border-indigo-500 text-indigo-700 font-semibold'
+                  : 'border-slate-200 hover:bg-slate-100 text-slate-500'
               }`}
             >
               {w}px

@@ -58,7 +58,7 @@ export class CanvasRenderer {
 
     // Reset transform & clear screen
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = '#090d16'; // Deep slate canvas backdrop
+    ctx.fillStyle = '#f8f9fc'; // Deep slate canvas backdrop
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Apply high-DPI scaling
@@ -132,7 +132,7 @@ export class CanvasRenderer {
     const startX = ((centerScreenX - this.camera.state.x * zoom) % screenGridSize + screenGridSize) % screenGridSize;
     const startY = ((centerScreenY - this.camera.state.y * zoom) % screenGridSize + screenGridSize) % screenGridSize;
 
-    ctx.fillStyle = '#1e293b'; // subtle grid dots
+    ctx.fillStyle = '#d9dce7'; // subtle grid dots
     const dotRadius = Math.max(1, Math.min(2, 1.2 * (zoom > 1 ? 1 : zoom)));
 
     ctx.beginPath();

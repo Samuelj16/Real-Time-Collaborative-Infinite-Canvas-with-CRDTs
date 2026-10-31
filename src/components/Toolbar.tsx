@@ -48,7 +48,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   ];
 
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1.5 bg-slate-900/90 backdrop-blur-md border border-slate-800 shadow-2xl rounded-2xl">
+    <div className="tool-dock absolute z-30 flex flex-col items-center gap-1.5 p-1.5 bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm rounded-2xl">
       {tools.map(tool => {
         const isActive = currentTool === tool.id;
         return (
@@ -56,10 +56,12 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             key={tool.id}
             onClick={() => onSelectTool(tool.id)}
             title={`${tool.label} (${tool.shortcut})`}
+            aria-label={tool.label}
+            aria-pressed={isActive}
             className={`relative p-2.5 rounded-xl transition-all duration-150 flex items-center justify-center ${
               isActive
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
             }`}
           >
             {tool.icon}
@@ -67,7 +69,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         );
       })}
 
-      <div className="w-[1px] h-6 bg-slate-800 mx-1" />
+      <div className="w-7 h-[1px] bg-slate-200 mx-1" />
 
       {/* Undo */}
       <button
@@ -76,7 +78,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         title="Undo (Ctrl+Z / Cmd+Z)"
         className={`p-2.5 rounded-xl transition-all duration-150 flex items-center justify-center ${
           canUndo
-            ? 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+            ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
             : 'text-slate-600 cursor-not-allowed'
         }`}
       >
@@ -90,14 +92,14 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         title="Redo (Ctrl+Shift+Z / Cmd+Shift+Z)"
         className={`p-2.5 rounded-xl transition-all duration-150 flex items-center justify-center ${
           canRedo
-            ? 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+            ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
             : 'text-slate-600 cursor-not-allowed'
         }`}
       >
         <Redo2 className="w-5 h-5" />
       </button>
 
-      <div className="w-[1px] h-6 bg-slate-800 mx-1" />
+      <div className="w-7 h-[1px] bg-slate-200 mx-1" />
 
       {/* Clear Canvas */}
       <button
@@ -112,7 +114,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       <button
         onClick={onOpenHelp}
         title="Keyboard Shortcuts & Architecture Guide"
-        className="p-2.5 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-150"
+        className="p-2.5 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-all duration-150"
       >
         <HelpCircle className="w-5 h-5" />
       </button>
