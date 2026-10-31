@@ -34,14 +34,33 @@ export const LOCAL_ORIGIN = `client-${yDoc.clientID}`;
 // Yjs Map containing all shapes: Key = shapeId, Value = Shape object
 export const yShapes = yDoc.getMap<Shape>('shapes');
 
-// Connect via WebSockets
-const WS_URL = window.location.hostname === 'localhost'
-  ? 'ws://localhost:1234'
-  : `ws://${window.location.hostname}:1234`;
+// Connect via WebSockets: local dev server or secure production Yjs WebSocket server
+const isLocal = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+);
+
+export const WS_URL =
+  (import.meta.env.VITE_WS_URL as string | undefined) ||
+  (isLocal ? 'ws://localhost:1234' : 'wss://demos.yjs.dev/ws');
+
+// Support custom rooms via ?room=my-room or #my-room
+const getInitialRoom = () => {
+  if (typeof window === 'undefined') return 'collaborative-canvas-v1';
+  const params = new URLSearchParams(window.location.search);
+  const queryRoom = params.get('room');
+  if (queryRoom) return queryRoom;
+  if (window.location.hash && window.location.hash.length > 1) {
+    return window.location.hash.substring(1);
+  }
+  return 'collaborative-infinite-canvas-production-room';
+};
+
+export const ROOM_NAME = getInitialRoom();
 
 export const wsProvider = new WebsocketProvider(
   WS_URL,
-  'collaborative-infinite-canvas-room',
+  ROOM_NAME,
   yDoc,
   { connect: true }
 );
