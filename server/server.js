@@ -1,3 +1,10 @@
+// Suppress Node.js v22+ experimental localStorage warning from lib0
+if (typeof globalThis !== 'undefined' && 'localStorage' in globalThis) {
+  try {
+    delete globalThis.localStorage;
+  } catch (_) {}
+}
+
 import http from 'http';
 import { WebSocketServer } from 'ws';
 
